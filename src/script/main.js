@@ -1,3 +1,28 @@
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize AOS
+    AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true,
+    offset: 50, // Reduzido de 100 para 50
+    delay: 0
+});
+    
+    // Initialize countdown timer for July 19, 2025, 15:00
+    new CountdownTimer('2025-07-19T15:00:00', 'countdown');
+    
+    // Initialize other components
+    new MobileMenu();
+    new RSVPForm();
+    new SmoothScroll();
+    new GalleryViewer();
+    new HeaderScroll();
+    
+    // Add some interactive effects
+    addInteractiveEffects();
+});
+
 // Countdown Timer
 class CountdownTimer {
     constructor(targetDate, elementId) {

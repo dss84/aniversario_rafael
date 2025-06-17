@@ -20,6 +20,7 @@
 
   &__content {
     display: grid;
+    text-align: center;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: variables.$spacing-2xl;
     margin-bottom: variables.$spacing-2xl;
@@ -63,6 +64,7 @@
 
   &__social-links {
     display: flex;
+    justify-content: center;
     gap: variables.$spacing-md;
 
     @media (max-width: variables.$breakpoint-sm) {
