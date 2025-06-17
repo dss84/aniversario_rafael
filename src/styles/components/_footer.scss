@@ -1,0 +1,133 @@
+@use '../variables';
+
+.footer {
+  background: linear-gradient(135deg, variables.$black 0%, variables.$dark-blue 100%);
+  color: variables.$white;
+  padding: variables.$spacing-3xl 0 variables.$spacing-lg;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="web" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0,10 L20,10 M10,0 L10,20" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23web)"/></svg>');
+    opacity: 0.3;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: variables.$spacing-2xl;
+    margin-bottom: variables.$spacing-2xl;
+    position: relative;
+    z-index: 2;
+
+    @media (max-width: variables.$breakpoint-sm) {
+      grid-template-columns: 1fr;
+      gap: variables.$spacing-xl;
+      text-align: center;
+    }
+  }
+
+  &__title {
+    font-family: variables.$font-display;
+    font-size: variables.$font-2xl;
+    color: variables.$accent-yellow;
+    margin-bottom: variables.$spacing-md;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  &__text {
+    line-height: 1.6;
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  &__contact-title,
+  &__social-title {
+    font-size: variables.$font-lg;
+    color: variables.$accent-yellow;
+    margin-bottom: variables.$spacing-md;
+    font-weight: variables.$font-medium;
+  }
+
+  &__contact-info {
+    line-height: 1.8;
+    opacity: 0.9;
+    margin: 0;
+  }
+
+  &__social-links {
+    display: flex;
+    gap: variables.$spacing-md;
+
+    @media (max-width: variables.$breakpoint-sm) {
+      justify-content: center;
+    }
+  }
+
+  &__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: variables.$radius-full;
+    font-size: variables.$font-xl;
+    color: variables.$white !important; // Forçar cor branca
+    text-decoration: none;
+    transition: all variables.$transition-normal;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    &:hover {
+      background: variables.$red;
+      transform: translateY(-3px);
+      box-shadow: variables.$shadow-lg;
+      color: variables.$white !important; // Forçar cor branca no hover
+    }
+
+    // Forçar cor branca nos ícones Font Awesome
+    i {
+      color: variables.$white !important;
+      transition: all variables.$transition-fast;
+    }
+
+    &:hover i {
+      color: variables.$white !important; // Forçar cor branca no hover
+      transform: scale(1.1);
+    }
+
+    // Estilos específicos para cada rede social (opcional)
+    &:nth-child(1):hover {
+      background: #1877f2; // Cor do Facebook
+    }
+
+    &:nth-child(2):hover {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); // Gradiente do Instagram
+    }
+
+    &:nth-child(3):hover {
+      background: #25d366; // Cor do WhatsApp
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: variables.$spacing-lg;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__copyright {
+    margin: 0;
+    opacity: 0.8;
+    font-size: variables.$font-sm;
+  }
+}

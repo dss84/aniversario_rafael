@@ -1,0 +1,125 @@
+@use '../variables';
+
+.gallery {
+  padding: variables.$spacing-3xl 0;
+  background: linear-gradient(135deg, variables.$black 0%, variables.$dark-blue 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(220, 20, 60, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(30, 58, 138, 0.1) 0%, transparent 50%);
+  }
+
+  &__title {
+    font-family: variables.$font-display;
+    font-size: variables.$font-4xl;
+    text-align: center;
+    margin-bottom: variables.$spacing-3xl;
+    color: variables.$white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+
+    &::after {
+      content: '🕸️';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: variables.$font-2xl;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: variables.$spacing-lg;
+    position: relative;
+    z-index: 2;
+
+    @media (min-width: variables.$breakpoint-lg) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 200px);
+    }
+  }
+
+  &__item {
+    position: relative;
+    border-radius: variables.$radius-xl;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all variables.$transition-normal;
+    box-shadow: variables.$shadow-lg;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: variables.$shadow-xl;
+    }
+
+    &--large {
+      @media (min-width: variables.$breakpoint-lg) {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+    }
+
+    &--wide {
+      @media (min-width: variables.$breakpoint-lg) {
+        grid-column: span 2;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all variables.$transition-slow;
+    }
+
+    &:hover img {
+      transform: scale(1.1);
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(220, 20, 60, 0.8), rgba(30, 58, 138, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all variables.$transition-normal;
+  }
+
+  &__item:hover &__overlay {
+    opacity: 1;
+  }
+
+  &__icon {
+    font-size: variables.$font-4xl;
+    color: variables.$white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: pulse 2s infinite;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}

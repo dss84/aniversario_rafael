@@ -1,0 +1,122 @@
+@use '../variables';
+
+.details {
+  background: linear-gradient(135deg, variables.$gray 0%, variables.$white 100%);
+  position: relative;
+  margin: 0;
+  padding: 0;
+  z-index: 0; // Garantir que fique atrás do hero
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    padding: variables.$spacing-3xl variables.$spacing-3xl;
+  }
+
+  &__title {
+    font-family: variables.$font-display;
+    font-size: variables.$font-4xl;
+    text-align: center;
+    margin-bottom: variables.$spacing-3xl;
+    color: variables.$black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+
+    &::after {
+      content: '🕷️';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: variables.$font-2xl;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: variables.$spacing-xl;
+    margin-top: variables.$spacing-2xl;
+  }
+
+  &__card {
+    background: variables.$white;
+    border-radius: variables.$radius-xl;
+    padding: variables.$spacing-2xl;
+    box-shadow: variables.$shadow-lg;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    transition: all variables.$transition-normal;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, variables.$red, variables.$blue);
+      z-index: -1;
+      margin: -3px;
+      border-radius: inherit;
+    }
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: variables.$shadow-xl;
+    }
+
+    &:nth-child(1) {
+      &::before {
+        background: linear-gradient(135deg, variables.$red, variables.$accent-yellow);
+      }
+    }
+
+    &:nth-child(2) {
+      &::before {
+        background: linear-gradient(135deg, variables.$blue, variables.$dark-blue);
+      }
+    }
+
+    &:nth-child(3) {
+      &::before {
+        background: linear-gradient(135deg, variables.$accent-yellow, variables.$warning-orange);
+      }
+    }
+
+    &:nth-child(4) {
+      &::before {
+        background: linear-gradient(135deg, variables.$success-green, variables.$blue);
+      }
+    }
+  }
+
+  &__icon {
+    font-size: variables.$font-4xl;
+    margin-bottom: variables.$spacing-lg;
+    display: block;
+    text-align: center;
+  }
+
+  &__card-title {
+    font-family: variables.$font-display;
+    font-size: variables.$font-xl;
+    color: variables.$light-gray;
+    margin-bottom: variables.$spacing-md;
+    text-align: center;
+  }
+
+  &__card-text {
+    color: variables.$light-gray;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0;
+
+    strong {
+      color: variables.$light-gray;
+      font-weight: variables.$font-bold;
+    }
+  }
+}

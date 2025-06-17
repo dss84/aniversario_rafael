@@ -1,0 +1,176 @@
+@use '../variables';
+
+.rsvp {
+  padding: variables.$spacing-3xl 0;
+  background: linear-gradient(135deg, variables.$gray 0%, variables.$white 100%);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(180deg, variables.$black 0%, transparent 100%);
+    opacity: 0.1;
+  }
+
+  &__content {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__title {
+    font-family: variables.$font-display;
+    font-size: variables.$font-4xl;
+    text-align: center;
+    margin-bottom: variables.$spacing-md;
+    color: variables.$black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &__subtitle {
+    text-align: center;
+    font-size: variables.$font-lg;
+    color: #4a5568;
+    margin-bottom: variables.$spacing-3xl;
+  }
+
+  &__form {
+    background: variables.$white;
+    border-radius: variables.$radius-2xl;
+    padding: variables.$spacing-2xl;
+    box-shadow: variables.$shadow-xl;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, variables.$red, variables.$blue);
+      z-index: -1;
+      margin: -3px;
+      border-radius: inherit;
+    }
+  }
+
+  &__form-group {
+    margin-bottom: variables.$spacing-lg;
+  }
+
+  &__label {
+    display: block;
+    font-weight: variables.$font-medium;
+    color: variables.$black;
+    margin-bottom: variables.$spacing-sm;
+    font-size: variables.$font-base;
+  }
+
+  &__input,
+  &__select,
+  &__textarea {
+    width: 100%;
+    padding: variables.$spacing-md;
+    border: 2px solid variables.$light-gray;
+    border-radius: variables.$radius-lg;
+    font-size: variables.$font-base;
+    font-family: variables.$font-primary;
+    transition: all variables.$transition-fast;
+    background-color: variables.$white;
+
+    &:focus {
+      outline: none;
+      border-color: variables.$red;
+      box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.1);
+    }
+
+    &:hover {
+      border-color: variables.$blue;
+    }
+  }
+
+  &__textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  &__button {
+    width: 100%;
+    background: linear-gradient(135deg, variables.$red 0%, variables.$blue 100%);
+    color: variables.$white;
+    border: none;
+    padding: variables.$spacing-lg variables.$spacing-xl;
+    border-radius: variables.$radius-xl;
+    font-size: variables.$font-lg;
+    font-weight: variables.$font-bold;
+    cursor: pointer;
+    transition: all variables.$transition-normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: variables.$spacing-md;
+    margin-top: variables.$spacing-xl;
+    box-shadow: variables.$shadow-lg;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: variables.$shadow-xl;
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+
+  &__button-text {
+    font-family: variables.$font-display;
+    font-size: variables.$font-xl;
+  }
+
+  &__button-icon {
+    font-size: variables.$font-xl;
+    animation: swing 2s infinite;
+  }
+
+  &__success {
+    background: linear-gradient(135deg, variables.$success-green, variables.$accent-yellow);
+    color: variables.$white;
+    border-radius: variables.$radius-xl;
+    padding: variables.$spacing-2xl;
+    text-align: center;
+    box-shadow: variables.$shadow-lg;
+    margin-top: variables.$spacing-xl;
+
+    h3 {
+      font-family: variables.$font-display;
+      font-size: variables.$font-2xl;
+      margin-bottom: variables.$spacing-md;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: variables.$font-lg;
+      margin: 0;
+    }
+  }
+}
+
+@keyframes swing {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+}
