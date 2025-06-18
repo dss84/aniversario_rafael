@@ -5,106 +5,145 @@
   top: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(135deg, variables.$red 0%, variables.$dark-blue 100%);
-  box-shadow: variables.$shadow-lg;
+  background: linear-gradient(135deg,#dc143c 0%,#1e40af 100%);
+  backdrop-filter: blur(20px);
   z-index: variables.$z-fixed;
-  transition: all variables.$transition-normal;
+  border-bottom: 2px solid rgba(255, 0, 0, 0.2);
+  transition: variables.$transition-normal;
+}
 
-  &__content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: variables.$spacing-md 0;
-    min-height: 70px;
+.header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: variables.$spacing-md 0;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: variables.$spacing-sm;
+}
+
+.header__spider-icon {
+  font-size: variables.$font-2xl;
+  animation: bounce 2s infinite;
+}
+
+.header__title {
+  font-family: variables.$font-display;
+  font-size: variables.$font-2xl;
+  color: variables.$white;
+  margin: 0;
+
+  @media (max-width: variables.$breakpoint-sm) {
+    font-size: variables.$font-xl;
   }
+}
 
-  &__logo {
-    display: flex;
-    align-items: center;
-    gap: variables.$spacing-sm;
-  }
+.header__age {
+  color: variables.$accent-yellow;
+}
 
-  &__spider-icon {
-    font-size: variables.$font-2xl;
-    animation: bounce 2s infinite;
-  }
+.header__nav {
+  display: flex;
+  gap: variables.$spacing-xl;
 
-  &__title {
-    font-family: variables.$font-display;
-    font-size: variables.$font-4xl;
-    color: variables.$white;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  &__age {
-    color: variables.$accent-yellow;
-    font-size: variables.$font-4xl;
-  }
-
-  &__nav {
-    display: flex;
-    gap: variables.$spacing-lg;
-
-    @media (max-width: variables.$breakpoint-md) {
-      display: none;
-    }
-  }
-
-  &__nav-link {
-    color: variables.$white;
-    text-decoration: none;
-    font-weight: variables.$font-medium;
-    padding: variables.$spacing-sm variables.$spacing-md;
-    border-radius: variables.$radius-md;
-    transition: all variables.$transition-fast;
-    position: relative;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background-color: variables.$accent-yellow;
-      transition: all variables.$transition-fast;
-      transform: translateX(-50%);
-    }
-
-    &:hover::after {
-      width: 100%;
-    }
-  }
-
-  &__mobile-toggle {
-    display: none;
+  @media (max-width: variables.$breakpoint-lg) {
+    position: fixed;
+    top: 75px; 
+    right: -300px;
+    width: 150px;
+    height: auto; 
+    max-height: 400px; 
+    background: linear-gradient(135deg,#dc143c 0%,#1e40af 100%);
     flex-direction: column;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: variables.$spacing-sm;
-    gap: 4px;
+    justify-content: flex-start;
+    align-items: center;
+    padding: variables.$spacing-md variables.$spacing-md; 
+    transition: right 0.3s ease;
+    z-index: 999;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    border-radius: 0 0 15px 15px; 
 
-    @media (max-width: variables.$breakpoint-md) {
-      display: flex;
+    &.active {
+      right: -14;
     }
+  }
+}
 
-    span {
-      width: 25px;
-      height: 3px;
-      background-color: variables.$white;
-      border-radius: variables.$radius-sm;
-      transition: all variables.$transition-fast;
+.header__nav-link {
+  color: variables.$white;
+  text-decoration: none;
+  font-weight: variables.$font-medium;
+  font-size: variables.$font-base;
+  transition: variables.$transition-normal;
+  position: relative;
+
+  @media (max-width: variables.$breakpoint-lg) {
+    font-size: variables.$font-base; 
+    padding: variables.$spacing-sm variables.$spacing-md; 
+    margin: variables.$spacing-xs 0; 
+    width: 200px;
+    text-align: center;
+    border-radius: 8px;
+    
+    &:hover {
+      background: rgba(255, 0, 0, 0.1);
     }
+  }
 
-    &:hover span {
-      background-color: variables.$accent-yellow;
+  &:hover {
+    color: variables.$red;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: variables.$red;
+    transition: variables.$transition-normal;
+  }
+
+  &:hover::after {
+    width: 60%;
+  }
+}
+
+.header__mobile-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: variables.$spacing-sm;
+
+  @media (max-width: variables.$breakpoint-lg) {
+    display: flex;
+  }
+
+  span {
+    width: 25px;
+    height: 3px;
+    background: variables.$white;
+    margin: 3px 0;
+    transition: variables.$transition-normal;
+    border-radius: 2px;
+  }
+
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
     }
   }
 }
